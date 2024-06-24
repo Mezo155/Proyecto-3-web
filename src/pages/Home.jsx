@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { listFilms } from "../services/filmsServices";
+import { TmdbService } from "../services/TmdbService";
 import { Link } from "react-router-dom";
 import { parseDate } from "../../public/utils";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -10,7 +10,7 @@ function Home() {
   const { theme, toggleTheme } = useContext(ThemeContext)
 
   useEffect(() => {
-    listFilms()
+    TmdbService()
       .then((films) => {
         console.log(films)
         setFilms(films)

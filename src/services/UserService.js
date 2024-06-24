@@ -2,7 +2,7 @@ import createHttp from "./BaseService";
 
 const http = createHttp();
 
-export const createUser = (user) => {
+export const createUser = (user) => { //es el register
   return http.post("/users", user);
 };
 

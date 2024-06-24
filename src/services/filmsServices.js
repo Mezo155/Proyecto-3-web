@@ -1,4 +1,4 @@
-import createHttp from "./BaseService";
+/*import createHttp from "./BaseService";
 
 const http = createHttp();
 
@@ -8,7 +8,7 @@ export const listFilms= () => {
 
 export const getFilms = (id) => {
   return http.get(`/films/${id}`);
-};
+};*/
 
 /*export const addApartment = (apt) => {
   return http.post("/apartments", apt);

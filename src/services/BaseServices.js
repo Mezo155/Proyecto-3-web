@@ -3,9 +3,9 @@ import { getAccessToken, logout } from "../stores/AccessTokenStore";
 
 const INVALID_STATUS_CODES = [401];
 
-const createHttp = (useAccessToken = false) => {
+const createHttp = (baseURL, useAccessToken = false) => {
   const http = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: baseURL,
   });
 
   if (useAccessToken) {
