@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { TmdbService } from "../services/TmdbService";
+import  TmdbService  from "../services/TmdbService";
 import { Link } from "react-router-dom";
 import { parseDate } from "../../public/utils";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -10,18 +10,18 @@ function Home() {
   const { theme, toggleTheme } = useContext(ThemeContext)
 
   useEffect(() => {
-    TmdbService()
+    TmdbService.listPopularMovies()
       .then((films) => {
-        console.log(films)
-        setFilms(films)
+        console.log(films); // Verifica la estructura y contenido de films
+        setFilms(films);
       })
       .catch((error) => {
-        console.log(error);
+        console.log("Error al obtener películas populares:", error); // Maneja errores y muestra detalles del error
       })
       .finally(() => {
-        setLoading(false)
-      })
-  }, [])
+        setLoading(false); // Asegura que setLoading(false) se llame al finalizar la solicitud
+      });
+  }, []);
 
   return (
     <>
