@@ -31,6 +31,8 @@ export const listPopularMovies = () => {
   return httpTmdb.get('/movie/popular?language=es-ES&page=1');
 };
 
-
+export const detailsPopularMovies = (id) => {
+  return httpTmdb.get(`/movie/${id}?language=es-ES`)
+}
 
 export default httpTmdb;

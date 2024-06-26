@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
-import { logout } from '../stores/AccessTokenStore';
+import { logout } from '../stores/AccesTokenStore';
 
 function Navbar() {
   const { user } = useContext(AuthContext)

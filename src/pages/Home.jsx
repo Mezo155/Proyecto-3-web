@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import  TmdbService  from "../services/TmdbService";
+import  { listPopularMovies}  from "../services/TmdbService";
 import { Link } from "react-router-dom";
 import { parseDate } from "../../public/utils";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -10,10 +10,10 @@ function Home() {
   const { theme, toggleTheme } = useContext(ThemeContext)
 
   useEffect(() => {
-    TmdbService.listPopularMovies()
+    listPopularMovies()
       .then((films) => {
         console.log(films); // Verifica la estructura y contenido de films
-        setFilms(films);
+        setFilms(films.results || []);
       })
       .catch((error) => {
         console.log("Error al obtener películas populares:", error); // Maneja errores y muestra detalles del error
@@ -34,16 +34,13 @@ function Home() {
       ) : (
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {films.map((film) => (
-            <div className="col" key={film._id}>
+            <div className="col" key={film.id}>
               <div className="card h-100">
-                <img src={film.img} className="card-img-top" alt={film.img} />
+                <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`} className="card-img-top" alt={film.title} />
                 <div className="card-body">
                   <h5 className="card-title">{film.title}</h5>
-                  <p className="card-text">Price per day: {film.pricePerDay} €</p>
-                  <Link to={`/apartments/${film._id}`}>See details</Link>
-                </div>
-                <div className="card-footer">
-                  <small className="text-body-secondary">Updated: {parseDate(film.updatedAt)}</small>
+                  <p className="card-text">{parseDate(film.release_date)}</p>
+                  <Link to={`/details/${film.id}`}>See details</Link>
                 </div>
               </div>
             </div>
@@ -53,6 +50,7 @@ function Home() {
             theme is {theme}
           </button>
         </div>
+        
       )}
     </>
   )

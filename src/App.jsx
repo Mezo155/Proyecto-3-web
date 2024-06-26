@@ -3,8 +3,8 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
-import ApartmentDetails from './pages/ApartmentDetails'
-import ApartmentForm from './pages/ApartmentForm'
+import FilmsDetails from "./pages/FilmsDetails"
+
 import Register from './pages/Register'
 import Login from './pages/Login'
 import ProtectedRoute from './components/ProtectedRoute'
@@ -18,6 +18,7 @@ function App() {
       <div className="container mt-5">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/details/:id" element={<FilmsDetails/>}/>
           <Route path="/profile" element={
             <ProtectedRoute>
               <Profile />
@@ -25,10 +26,6 @@ function App() {
           } />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-
-          <Route path="/apartments/add" element={<ApartmentForm />} />
-          <Route path="/apartments/edit/:id" element={<ApartmentForm />} />
-          <Route path="/apartments/:id" element={<ApartmentDetails />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

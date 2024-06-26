@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAccessToken, logout } from "../stores/AccessTokenStore";
+import { getAccessToken, logout } from "../stores/AccesTokenStore";
 
 const INVALID_STATUS_CODES = [401];
 
