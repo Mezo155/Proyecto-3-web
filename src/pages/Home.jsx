@@ -1,31 +1,54 @@
 import { useState, useEffect, useContext } from "react";
-import  { listPopularMovies}  from "../services/TmdbService";
+import  { listPopularMovies, searchMovies}  from "../services/TmdbService";
 import { Link } from "react-router-dom";
 import { parseDate } from "../../public/utils";
 import { ThemeContext } from "../contexts/ThemeContext";
+import "./Home.css"
 
 function Home() {
   const [films, setFilms] = useState([])
   const [loading, setLoading] = useState(true)
   const { theme, toggleTheme } = useContext(ThemeContext)
+  const [searchTerm, setSearchTerm] = useState("")
 
-  useEffect(() => {
-    listPopularMovies()
+  const loadMovies = (searchTerm = "") => {
+    setLoading(true);
+    const fetchMovies = searchTerm ? searchMovies(searchTerm) : listPopularMovies();
+    fetchMovies
       .then((films) => {
-        console.log(films); // Verifica la estructura y contenido de films
+        console.log(films)
         setFilms(films.results || []);
       })
       .catch((error) => {
-        console.log("Error al obtener películas populares:", error); // Maneja errores y muestra detalles del error
+        console.log("Error al obtener películas:", error);
       })
       .finally(() => {
-        setLoading(false); // Asegura que setLoading(false) se llame al finalizar la solicitud
+        setLoading(false);
       });
+  };
+
+  // Cargar películas populares al montar el componente
+  useEffect(() => {
+    loadMovies();
   }, []);
+
+  // Manejar la búsqueda de películas
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+    loadMovies(e.target.value);
+  };
 
   return (
     <>
       <h1 className="mb-5">Ironfilms</h1>
+      
+      <input
+        type="text"
+        placeholder="Busca una pelicula..."
+        value={searchTerm}
+        onChange={handleSearch}
+        className="search-input"
+      />
 
       {loading ? (
         <div className="spinner-border" role="status">

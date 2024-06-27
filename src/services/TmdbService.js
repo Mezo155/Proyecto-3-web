@@ -35,4 +35,12 @@ export const detailsPopularMovies = (id) => {
   return httpTmdb.get(`/movie/${id}?language=es-ES`)
 }
 
+export const searchMovies = (query) => {
+  return httpTmdb.get(`/search/movie?language=es-ES&query=${encodeURIComponent(query)}&page=1`);
+}
+
+export const trailerMovie = (id) => {
+  return httpTmdb.get(`/movie/${id}/videos?language=es-ES`)
+}
+
 export default httpTmdb;

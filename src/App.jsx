@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import FilmsDetails from "./pages/FilmsDetails"
-
+import TrailerPage from "./pages/TrailerPage"
 import Register from './pages/Register'
 import Login from './pages/Login'
 import ProtectedRoute from './components/ProtectedRoute'
@@ -19,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/details/:id" element={<FilmsDetails/>}/>
+          <Route path='/movie/:id/trailer' element={<TrailerPage/>}/>
           <Route path="/profile" element={
             <ProtectedRoute>
               <Profile />

@@ -75,6 +75,11 @@ function FilmsDetails() {
               <h5>{filmsDetail.tagline}</h5>
               <p className="card-text">{filmsDetail.overview}</p>
             </div>
+            <div>
+            <Link to={`/movie/${id}/trailer`} className="btn btn-primary">
+              Ver trailer
+            </Link>
+            </div>
             </div>
           </div>
         </div>
