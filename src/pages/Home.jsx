@@ -40,7 +40,7 @@ function Home() {
 
   return (
     <>
-      <h1 className="mb-5">Ironfilms</h1>
+      <h1 className="mb-5">Lo más popular</h1>
       
       <input
         type="text"

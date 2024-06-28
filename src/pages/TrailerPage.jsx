@@ -13,7 +13,8 @@ function TrailerPage() {
         // Verifica si hay resultados y si hay al menos un video disponible
         if (response.results && response.results.length > 0) {
           // Obtén la clave (key) del primer video disponible
-          const officialTrailer = response.results.find(video => video.name.toLowerCase().includes("tráiler") || video.name.toLowerCase().includes("trailer"));
+          const officialTrailer = response.results.find(video => {
+          return  (video.name.toLowerCase().includes("tráiler") || video.name.toLowerCase().includes("trailer")) && video.name.toLowerCase().includes("español")});
           if (officialTrailer) {
             setTrailerKey(officialTrailer.key);}
         } else {

@@ -43,4 +43,9 @@ export const trailerMovie = (id) => {
   return httpTmdb.get(`/movie/${id}/videos?language=es-ES`)
 }
 
+export const CreditsPopularMovies = (id) => {
+  return httpTmdb.get(`/movie/${id}/credits`)
+}
+
+
 export default httpTmdb;

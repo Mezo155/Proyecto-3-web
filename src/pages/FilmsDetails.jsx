@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
-import { detailsPopularMovies } from "../services/TmdbService";
+import { detailsPopularMovies, CreditsPopularMovies  } from "../services/TmdbService";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { parseDate } from "../../public/utils";
+import { parseDate, parseYear, parseHours } from "../../public/utils";
 import "./FilmsDetails.css"
-import { parseYear } from "../../public/utils";
-import { parseHours} from "../../public/utils"
+
 
 function FilmsDetails() {
   const { id } = useParams()
   const navigate = useNavigate()
   const [filmsDetail, setFilmsDetail] = useState({})
   const [loading, setLoading] = useState(true)
+  const [credits, setCredits] = useState({})
 
   useEffect(() => {
-    detailsPopularMovies(id)
-      .then((film) => {
-        console.log(film)
+    Promise.all([detailsPopularMovies(id), CreditsPopularMovies(id)])
+      .then(([film, credits]) => {
+        console.log({credits, film})
         setFilmsDetail(film)
+        setCredits(credits)
       })
       .catch((error) => {
         console.log("Error al obtener detalles de películas:", error); // Maneja errores y muestra detalles del error
@@ -43,6 +44,7 @@ function FilmsDetails() {
   const backdropUrl = `https://image.tmdb.org/t/p/original${filmsDetail.backdrop_path}`;
 
   return (
+    /* Film details */
     <>
       <h1 className="mb-5">Films details</h1>
 
@@ -83,6 +85,22 @@ function FilmsDetails() {
             </div>
           </div>
         </div>
+      </div>
+
+{/* Credits */}
+      <h2 className="mt-5">Main Cast</h2>
+      <div className="row">
+        {credits.cast && credits.cast.slice(0, 6).map((actor) => (
+          <div key={actor.cast_id} className="col-md-2">
+            <div className="card">
+              <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} className="card-img-top" alt={actor.name} />
+              <div className="card-body">
+                <h5 className="card-title">{actor.name}</h5>
+                <p className="card-text">{actor.character}</p>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );

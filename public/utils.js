@@ -9,6 +9,9 @@ export const parseDate = (date) => { // "2024-06-03T19:00:52.817Z"
   }
 
 export const parseYear = (date) => {
+  if(!date){
+    return ""
+  }
 
   const [year, month, day] = date.split("-")
   return `${year}`

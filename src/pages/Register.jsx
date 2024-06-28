@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
-import { createUser } from "../services/UserService";
+import { createUser } from "../services/LocalService";
 import { Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
 const Register = () => {
   const { user: currentUser, isAuthLoaded } = useContext(AuthContext);
   const [user, setUser] = useState({
+    userName: "",
     email: "",
     password: "",
   })
@@ -45,13 +46,18 @@ const Register = () => {
     <div>
       <h1 className="mb-3">Register</h1>
       <form onSubmit={handleSubmit}>
+      <div className="mb-3">
+          <label htmlFor="userName" className="form-label">username</label>
+          <input onChange={handleInputChange} value={user.userName} type="text" className="form-control" name="userName" id="userName" required placeholder="Add a username..." />
+        </div>
+
         <div className="mb-3">
-          <label htmlFor="title" className="form-label">Email</label>
+          <label htmlFor="email" className="form-label">Email</label>
           <input onChange={handleInputChange} value={user.email} type="email" className="form-control" name="email" id="email" required placeholder="Add a email..." />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="title" className="form-label">Password</label>
+          <label htmlFor="password" className="form-label">Password</label>
           <input onChange={handleInputChange} value={user.password} type="password" className="form-control" name="password" id="password" required placeholder="Add a password..." />
         </div>
 

@@ -20,7 +20,7 @@ export const AuthContextProvider = ({ children }) => {
         cb && cb();
       })
       .catch((err) => {
-        console.error(err);
+        console.error(err);// este da problemas
       });
   };
 
