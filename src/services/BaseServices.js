@@ -27,7 +27,7 @@ const createHttp = (baseURL, useAccessToken = false) => {
     },
     function (error) {
       // if (error && err.response && err.response.status) // Codigo equivalente
-      
+      console.log("ERROR", error);// este da problemas
       if (
         error?.response?.status &&
         INVALID_STATUS_CODES.includes(error.response.status)
@@ -38,7 +38,7 @@ const createHttp = (baseURL, useAccessToken = false) => {
         }
       }
 
-      return Promise.reject(error.response ? error.response.data : error);
+      return Promise.reject(error.response.data);//este da problemas
     }
   );
 
