@@ -47,7 +47,7 @@ function Home() {
         placeholder="Busca una pelicula..."
         value={searchTerm}
         onChange={handleSearch}
-        className="search-input"
+        className="search-input mb-5"
       />
 
       {loading ? (

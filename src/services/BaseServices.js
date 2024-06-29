@@ -22,7 +22,7 @@ const createHttp = (baseURL, useAccessToken = false) => {
 
   http.interceptors.response.use(
     function (response) {
-      console.log(response);
+      console.log(response.data);
       return response.data;
     },
     function (error) {
