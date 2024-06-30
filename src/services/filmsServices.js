@@ -1,7 +1,13 @@
-/*import createHttp from "./BaseService";
+import createHttp from "./BaseService";
 
-const http = createHttp();
+const localApiUrl = 'http://localhost:3000';
+const http = createHttp(localApiUrl, true);
 
+export const likeFilm= (id) => {
+  return http.post(`/films/${id}`);
+};
+
+/*
 export const listFilms= () => {
   return http.get("/films");
 };

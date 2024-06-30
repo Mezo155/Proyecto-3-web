@@ -18,7 +18,11 @@ function App() {
       <div className="container mt-5">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/details/:id" element={<FilmsDetails/>}/>
+          <Route path="/details/:id" element={
+            <ProtectedRoute>
+              <FilmsDetails/>
+            </ProtectedRoute>
+          }/>
           <Route path='/movie/:id/trailer' element={<TrailerPage/>}/>
           <Route path="/profile" element={
             <ProtectedRoute>

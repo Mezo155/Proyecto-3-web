@@ -63,7 +63,7 @@ function Home() {
                 <div className="card-body">
                   <h5 className="card-title">{film.title}</h5>
                   <p className="card-text">{parseDate(film.release_date)}</p>
-                  <Link to={`/details/${film.id}`}>See details</Link>
+                  <Link to={`/details/${film.id}`} className="btn btn-primary">Detalles</Link>
                 </div>
               </div>
             </div>
