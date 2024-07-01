@@ -21,6 +21,12 @@ export const AuthContextProvider = ({ children }) => {
       })
       .catch((err) => {
         console.error(err);// este da problemas
+
+        if (err.message === "jwt expired") {//esto es nuevo
+          logout();
+        } else {
+          setIsAuthLoaded(true);  // Make sure to set loading to true even if there's an error
+        }//hasta aqui
       });
   };
 

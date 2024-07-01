@@ -1,4 +1,4 @@
-import createHttp from "./BaseService";
+import createHttp from "./BaseServices";
 
 const localApiUrl = 'http://localhost:3000';
 const http = createHttp(localApiUrl, true);

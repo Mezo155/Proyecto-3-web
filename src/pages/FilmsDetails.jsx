@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { detailsPopularMovies, CreditsPopularMovies  } from "../services/TmdbService";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { parseDate, parseYear, parseHours } from "../../public/utils";
+import LikeButton from "../components/LikeButton";
 import "./FilmsDetails.css"
 
 
@@ -81,6 +82,7 @@ function FilmsDetails() {
             <Link to={`/movie/${id}/trailer`} className="btn btn-primary">
               Ver trailer
             </Link>
+            <LikeButton externalItemId={id} liked={false} />
             </div>
             </div>
           </div>
