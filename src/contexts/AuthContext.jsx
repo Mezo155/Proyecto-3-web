@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { getAccessToken, setAccessToken } from "../stores/AccesTokenStore.js";
+import { getAccessToken, setAccessToken, logout } from "../stores/AccesTokenStore.js";
 import { getCurrentUserService } from "../services/AuthService";
 import { useNavigate } from "react-router-dom";
 
