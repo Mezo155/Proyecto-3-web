@@ -17,23 +17,14 @@ export const getMyLikes = () => {
   return http.get("/likes/me")
 }
 
-/*
-export const listFilms= () => {
-  return http.get("/films");
+export const createComment = (commentData) => {
+  const { filmId, ...rest } = commentData;
+  console.log('Received filmId:', filmId); // Verificar si filmId está definido aquí
+  if (!filmId) {
+    console.error('filmId is undefined in createComment');
+    return Promise.reject('filmId is undefined');
+  }
+
+  console.log('filmId in createComment:', filmId);
+  return http.post(`/films/${filmId}/comment`, rest); // Pasa el resto de los datos del comentario en el cuerpo de la solicitud
 };
-
-export const getFilms = (id) => {
-  return http.get(`/films/${id}`);
-};*/
-
-/*export const addApartment = (apt) => {
-  return http.post("/apartments", apt);
-};*/
-
-/*export const editApartment = (id, apt) => {
-  return http.put(`/apartments/${id}`, apt);
-};*/
-
-/*export const deleteApartment = (id) => {
-  return http.delete(`/apartments/${id}`);
-};*/

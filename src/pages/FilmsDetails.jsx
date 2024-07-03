@@ -7,8 +7,10 @@ import { AuthContext } from "../contexts/AuthContext";
 import { likeFilm, getMyLikes } from "../services/filmsServices";
 import "./FilmsDetails.css";
 
+
 function FilmsDetails() {
   const { id } = useParams();
+  const { filmId} =useParams();
   const navigate = useNavigate();
   const [filmsDetail, setFilmsDetail] = useState({});
   const [loading, setLoading] = useState(true);
@@ -100,6 +102,9 @@ function FilmsDetails() {
                   onLikeChange={handleLikeChange}
                 />
               </div>
+              <Link to={`/comments`} className="btn btn-primary mb-3">
+                Comentar
+              </Link>
             </div>
           </div>
         </div>

@@ -9,6 +9,7 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import ProtectedRoute from './components/ProtectedRoute'
 import Profile from './pages/Profile'
+import Comment from './pages/Comment'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
 
       <div className="container mt-5">
         <Routes>
+          <Route path="/comments" element={<Comment/>}/>
           <Route path="/" element={<Home />} />
           <Route path="/details/:id" element={
             <ProtectedRoute>
