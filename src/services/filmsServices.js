@@ -17,13 +17,13 @@ export const getMyLikes = () => {
   return http.get("/likes/me")
 }
 
-export const createComment = (filmId) => {
-  console.log(filmId)
-  if (!filmId) {
-    console.error('externalItemId is undefined at likeFilm');
-    return Promise.reject('externalItemId is undefined');
-  }
+export const createComment = (data) => {
+  console.log(data)
+  const {filmId, title, comment} = data
+  
+  return http.post(`/films/${filmId}/comment`, {title, comment});
+};
 
-  console.log('externalItemId in likeFilm:', filmId);
-  return http.post(`/films/${filmId}/comment`);
+export const getFilmComments = (filmId) => {
+  return http.get(`/films/${filmId}/comments`);
 };

@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import { createComment } from "../services/filmsServices";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
-const Comment = ({filmId}) => {
-    console.log('Film ID in FilmDetails:', filmId);
+const Comment = () => {
+  const { filmId} =useParams();
+    
   const { user: currentUser, isAuthLoaded } = useContext(AuthContext);
   const [comment, setComment] = useState({
     title: "",
@@ -32,8 +33,9 @@ const Comment = ({filmId}) => {
 
     createComment({ ...comment, user: currentUser._id, filmId })  // Asegúrate de pasar el userId del contexto y filmId como prop
       .then(() => {
-/*         navigate(`/details/${filmId}`);  // Redirige a una página de comentarios o al perfil del usuario
- */      })
+        
+        navigate(`/details/${filmId}`);  // Redirige a una página de comentarios o al perfil del usuario
+       })
       .catch(err => {
         console.error(err);
       });

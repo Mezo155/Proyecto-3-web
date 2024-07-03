@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
 import { logout } from '../stores/AccesTokenStore';
-import './navbar.css'; // Asegúrate de tener este archivo si usas CSS externo
+import "./Navbar.css"; // Asegúrate de tener este archivo si usas CSS externo
 
 function Navbar() {
   const { user } = useContext(AuthContext);

@@ -18,7 +18,7 @@ function App() {
 
       <div className="container mt-5">
         <Routes>
-          <Route path="/comments" element={<Comment/>}/>
+          <Route path="/comments/:filmId" element={<Comment/>}/>
           <Route path="/" element={<Home />} />
           <Route path="/details/:id" element={
             <ProtectedRoute>
