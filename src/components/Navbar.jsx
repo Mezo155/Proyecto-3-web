@@ -29,9 +29,14 @@ function Navbar() {
                 </li>
               </>
             ) : (
+              <>
+              <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="/profile">Perfil</Link>
+              </li>
               <li className="nav-item">
                 <button onClick={logout} className="btn btn-danger">Logout</button>
               </li>
+              </>
             )}
           </ul>
         </div>

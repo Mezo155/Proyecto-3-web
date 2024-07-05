@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { detailsPopularMovies, CreditsPopularMovies, getFilmComments } from "../services/TmdbService";
+import { detailsPopularMovies, CreditsPopularMovies } from "../services/TmdbService";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { parseDate, parseYear, parseHours } from "../../public/utils";
 import LikeButton from "../components/LikeButton";
 import { AuthContext } from "../contexts/AuthContext";
-import { likeFilm, getMyLikes } from "../services/filmsServices";
+import { likeFilm, getMyLikes, getFilmComments } from "../services/filmsServices";
 import "./FilmsDetails.css";
 
 
@@ -104,7 +104,7 @@ function FilmsDetails() {
                 onLikeChange={handleLikeChange}
               />
             </div>
-            <Link to={`/comments/${filmsDetail.id}`} className="btn btn-primary mb-3">
+            <Link to={`/comments/${id}`} className="btn btn-primary mb-3">
               Comentar
             </Link>
           </div>
@@ -137,8 +137,9 @@ function FilmsDetails() {
         <ul className="list-group">
           {comments.map((comment) => (
             <li key={comment._id} className="list-group-item">
-              <strong>{comment.user.name}: </strong>
-              {comment.text}
+              <strong>{comment.user.userName}: </strong>
+              <h3>{comment.title}</h3>
+              <p>{comment.title}</p>
             </li>
           ))}
         </ul>
