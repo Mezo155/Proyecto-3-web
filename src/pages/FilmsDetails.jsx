@@ -139,7 +139,7 @@ function FilmsDetails() {
             <li key={comment._id} className="list-group-item">
               <strong>{comment.user.userName}: </strong>
               <h3>{comment.title}</h3>
-              <p>{comment.title}</p>
+              <p>{comment.comment}</p>
             </li>
           ))}
         </ul>

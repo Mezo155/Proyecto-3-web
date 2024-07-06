@@ -9,6 +9,7 @@ const Register = () => {
     userName: "",
     email: "",
     password: "",
+    imgUrl: ''
   })
 
   const navigate = useNavigate()
@@ -22,10 +23,21 @@ const Register = () => {
     })
   }
 
+  const handleFileChange = (event) => {
+    setUser({
+      ...user,
+      imgUrl: event.target.files[0]  // Guardamos el archivo de la imagen
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    createUser(user)
+    const data = new FormData()
+
+    data.append('userName', user.userName)
+
+    createUser(data)
       .then(user => {
         navigate('/login')
       })
@@ -59,6 +71,11 @@ const Register = () => {
         <div className="mb-3">
           <label htmlFor="password" className="form-label">Password</label>
           <input onChange={handleInputChange} value={user.password} type="password" className="form-control" name="password" id="password" required placeholder="Add a password..." />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="image" className="form-label">Profile Image</label>
+          <input onChange={handleFileChange} type="file" className="form-control" name="image" id="image" />
         </div>
 
         <button type="submit" className="btn btn-primary">Register</button>
