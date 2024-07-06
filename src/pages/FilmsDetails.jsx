@@ -40,10 +40,10 @@ function FilmsDetails() {
     }
   }, [id, user]);
 
-  const handleLikeChange = (newLikedState) => {
+  const handleLikeChange = () => {
     likeFilm(filmsDetail.id)
       .then(() => {
-        setLiked(newLikedState);
+        setLiked(!liked);
       })
       .catch((err) => {
         console.log(err);

@@ -4,6 +4,7 @@ const localApiUrl = 'http://localhost:3000';
 const http = createHttp(localApiUrl, true);
 
 export const likeFilm = (externalItemId) => {
+  console.log("estoy mandando el itemId", externalItemId)
  return http.post(`/films/${externalItemId}/like`);
 };
 

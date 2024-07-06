@@ -32,7 +32,7 @@ import { useContext } from 'react';
   
   
     return (
-      <button onClick={handleLike} className={liked ? 'liked' : 'not-liked'}>
+      <button type='button' onClick={onLikeChange} className={liked ? 'liked' : 'not-liked'}>
         {liked ? 'Dislike' : 'Like'}
       </button>
     );
