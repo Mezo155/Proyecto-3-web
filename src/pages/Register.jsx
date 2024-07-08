@@ -35,7 +35,10 @@ const Register = () => {
 
     const data = new FormData()
 
-    data.append('userName', user.userName)
+    data.append('userName', user.userName);
+    data.append("email", user.email);
+    data.append("password", user.password);
+    data.append("imgUrl", user.imgUrl)
 
     createUser(data)
       .then(user => {

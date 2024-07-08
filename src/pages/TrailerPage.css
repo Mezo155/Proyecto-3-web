@@ -1,0 +1,34 @@
+.no-trailer-message {
+    
+   position: relative;
+    font-size: 50px;
+    font-weight: bold;
+    
+}
+    
+   
+
+    
+    
+  
+  
+  
+  
+.trailer-page {
+    width: 1000px;
+    height: 1000px;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-image: url('path-to-your-image.jpg'); /* Asegúrate de reemplazar 'path-to-your-image.jpg' con la URL de tu imagen de fondo */
+  }
+  
+  .trailer-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5); /* Ajusta el color y la opacidad según sea necesario */
+  }

@@ -3,11 +3,13 @@ import { getMyLikes } from "../services/filmsServices";
 import { AuthContext } from "../contexts/AuthContext";
 import { parseDate, parseYear, parseHours } from "../../public/utils";
 import { detailsPopularMovies } from "../services/TmdbService";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const [likedFilms, setLikedFilms] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (user) {
@@ -39,11 +41,25 @@ function Profile() {
     );
   }
 
+  const handleEditProfile = () => {
+    navigate('/profile/edit'); // Redirigir a la página de edición de perfil
+  };
+
+
   return (
     <div>
-      <h1>Mis Películas Favoritas</h1>
-      {likedFilms.length === 0 ? (
-        <p>No tienes películas favoritas aún.</p>
+    {user && (
+      <div className="user-profile mb-4">
+        <img src={user.imgUrl} alt={user.userName} className="img-thumbnail" style={{ width: '150px', height: '150px' }} />
+        <h2>{user.userName}</h2>
+        <button className="btn btn-primary mt-2" onClick={handleEditProfile}>
+            Editar Perfil
+          </button>
+      </div>
+    )}
+    <h1>Mis Películas Favoritas</h1>
+    {likedFilms.length === 0 ? (
+      <p>No tienes películas favoritas aún.</p>
       ) : (
         <div className="row">
           {likedFilms.map((film) => (

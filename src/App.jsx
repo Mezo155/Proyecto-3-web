@@ -10,6 +10,7 @@ import Login from './pages/Login'
 import ProtectedRoute from './components/ProtectedRoute'
 import Profile from './pages/Profile'
 import Comment from './pages/Comment'
+import EditProfile from './pages/EditProfile'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
               <Profile />
             </ProtectedRoute>
           } />
+          <Route path="/profile/edit" element={<EditProfile />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
