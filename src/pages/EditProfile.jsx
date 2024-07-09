@@ -1,10 +1,10 @@
 import { useContext, useState, useEffect } from "react";
-import { updateUser } from "../services/AuthService";
-import { useNavigate } from "react-router-dom";
+import { updateCurrentUser } from "../services/AuthService";
+import { useNavigate, Navigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
-const updatedUser = () => {
-  const { user: currentUser, isAuthLoaded } = useContext(AuthContext);
+const EditUser = () => {
+  const { user: currentUser, isAuthLoaded, getUser } = useContext(AuthContext);
   const [user, setUser] = useState({
     userName: "",
     email: "",  // Este campo se usa solo para mostrar el email actual, pero no se puede editar
@@ -50,9 +50,11 @@ const updatedUser = () => {
       data.append("imgUrl", user.imgUrl);
     }
 
-    updateUser(data)
-      .then(updatedUser => {
-        navigate('/profile');
+    updateCurrentUser(data)
+      .then(user => {
+        console.log("*******", user)
+        return getUser()
+          .then(() => navigate('/profile'))
       })
       .catch(err => {
         console.error(err);

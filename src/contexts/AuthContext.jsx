@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useCallback } from "react";
 import { getAccessToken, setAccessToken, logout } from "../stores/AccesTokenStore.js";
 import { getCurrentUserService } from "../services/AuthService";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +11,8 @@ export const AuthContextProvider = ({ children }) => {
 
   const navigate = useNavigate();
 
-  const getUser = (cb) => {
-    getCurrentUserService()
+  const getUser = useCallback((cb) => {
+    return getCurrentUserService()
       .then((user) => {
         setUser(user);
         setIsAuthLoaded(true);
@@ -28,7 +28,7 @@ export const AuthContextProvider = ({ children }) => {
           setIsAuthLoaded(true);  // Make sure to set loading to true even if there's an error
         }//hasta aqui
       });
-  };
+  }, []);
 
   const login = (token) => {
     setAccessToken(token);
@@ -50,6 +50,7 @@ export const AuthContextProvider = ({ children }) => {
         login,
         user,
         isAuthLoaded,
+        getUser
       }}
     >
       {children}
