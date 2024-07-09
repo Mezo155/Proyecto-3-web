@@ -11,6 +11,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Profile from './pages/Profile'
 import Comment from './pages/Comment'
 import EditProfile from './pages/EditProfile'
+import DiscoverMoviesComponent from './pages/FindFilms'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
 
       <div className="container mt-5">
         <Routes>
+          <Route path='/movie/discover' element={<DiscoverMoviesComponent/>}/>
           <Route path="/comments/:filmId" element={<Comment/>}/>
           <Route path="/" element={<Home />} />
           <Route path="/details/:id" element={

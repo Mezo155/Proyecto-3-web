@@ -8,8 +8,13 @@
     height: 46px;
     line-height: 46px;
     font-size: 1.1em;
-    color: rgba(0, 0, 0, .5);
-    border: 0;
+    color: black;
+    border: 2px, solid, black;
     border-radius: 30px;
     padding: 10px 20px;
+}
+
+.search-input:focus {
+    outline: none; /* Evita el borde adicional al enfocar */
+    border: 3px, solid, black;/* Asegúrate de mantener el borde negro al enfocar */
 }

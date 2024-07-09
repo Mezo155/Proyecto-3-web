@@ -30,3 +30,34 @@
 .synopsis {
     margin-top: 40px;
 }
+
+/* boton play */
+
+.position-relative {
+    position: relative;
+}
+
+.play-icon-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    opacity: 0; /* Inicialmente oculto */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+/* Atenuar la imagen y mostrar el icono al pasar el cursor */
+.position-relative:hover .play-icon-overlay {
+    opacity: 1; /* Mostrar el icono al pasar el cursor */
+}
+
+/* Atenuar la imagen al pasar el cursor */
+.position-relative:hover img {
+    opacity: 0.6; /* Atenuar la imagen al pasar el cursor */
+}
+
+
+.play-icon {
+    font-size: 4rem;
+}

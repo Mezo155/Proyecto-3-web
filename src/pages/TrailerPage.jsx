@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { trailerMovie, detailsPopularMovies } from '../services/TmdbService';
 import "./TrailerPage.css"
+
 
 function TrailerPage() {
   const { id } = useParams();
   const [trailerKey, setTrailerKey] = useState(null);
-  const [backdropUrl, setBackdropUrl] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Obtén los detalles de la película
+    // Obtén los detalles de la película y los tráileres
     detailsPopularMovies(id)
       .then(detailsResponse => {
-        setBackdropUrl(`https://image.tmdb.org/t/p/original${detailsResponse.backdrop_path}`);
-
-        // Obtén los tráileres
+        // Se elimina el uso de backdropUrl
         return trailerMovie(id);
       })
       .then(trailerResponse => {
@@ -44,12 +42,14 @@ function TrailerPage() {
     return <p>Cargando tráiler...</p>;
   }
 
+  if (!trailerKey) {
+    // Si no hay tráiler, no se renderiza nada
+    return null;
+  }
+
   return (
-    <div
-      className="trailer-page"
-      style={{ backgroundImage: `url(${backdropUrl})`}}
-    >
-      {trailerKey ? (
+    <div className="trailer-page">
+      {trailerKey && (
         <>
           <h1>Tráiler</h1>
           <div className="video-container">
@@ -63,17 +63,9 @@ function TrailerPage() {
             ></iframe>
           </div>
         </>
-      ) : (
-        <div className="no-trailer-message">
-          <p>No hay trailers disponibles</p>
-          <Link to={`/details/${id}`} className="back-to-details-button">
-            Volver a detalles
-          </Link>
-        </div>
       )}
     </div>
   );
 }
 
 export default TrailerPage;
-

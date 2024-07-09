@@ -47,5 +47,16 @@ export const CreditsPopularMovies = (id) => {
   return httpTmdb.get(`/movie/${id}/credits`)
 }
 
+export const DiscoverMovies = () => {
+  return httpTmdb.get('/discover/movie', {
+    params: {
+      include_adult: true,
+      include_video: true,
+      language: 'es-ES',
+      page: 1,
+      sort_by: 'popularity.desc',
+    },
+  });
+};
 
 export default httpTmdb;

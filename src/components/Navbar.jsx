@@ -31,6 +31,9 @@ function Navbar() {
             ) : (
               <>
               <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="/movie/discover">Descubre</Link>
+              </li>
+              <li className="nav-item">
               <Link className="nav-link" aria-current="page" to="/profile">Perfil</Link>
               </li>
               <li className="nav-item">
