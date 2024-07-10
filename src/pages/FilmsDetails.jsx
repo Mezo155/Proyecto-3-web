@@ -4,10 +4,11 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { parseDate, parseYear, parseHours } from "../../public/utils";
 import LikeButton from "../components/LikeButton";
 import { AuthContext } from "../contexts/AuthContext";
-import { likeFilm, getMyLikes, getFilmComments } from "../services/filmsServices";
+import { likeFilm, getMyLikes, getFilmComments, toggleWatchlist, getMyWatchlist} from "../services/filmsServices";
 import "./FilmsDetails.css";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import WatchlistButton from "../components/WatchListButton";
 
 
 function FilmsDetails() {
@@ -17,6 +18,7 @@ function FilmsDetails() {
   const [loading, setLoading] = useState(true);
   const [credits, setCredits] = useState({});
   const [liked, setLiked] = useState(false);
+  const [watchList, setWatchList] = useState(false)
   const [comments, setComments] = useState([]);
   const [trailers, setTrailers] = useState([]);  // Estado para almacenar trailers
   const { user } = useContext(AuthContext);
@@ -28,15 +30,18 @@ function FilmsDetails() {
         CreditsPopularMovies(id),
         trailerMovie(id),  // Llamada para obtener trailers
         getMyLikes(),
+        getMyWatchlist(),
         getFilmComments(id),
       ])
-        .then(([film, credits, trailers, likes, comments]) => {
+        .then(([film, credits, trailers, likes, comments, watchLists]) => {
           setFilmsDetail(film);
           setCredits(credits);
           setComments(comments);
           setTrailers(trailers.results || []);  // Establecer trailers
           const likedFilm = likes.find((like) => like.externalItemId === id);
           setLiked(!!likedFilm);
+          const watchFilm = watchLists.find((watchList) => watchList.externalItemId === id);
+          setLiked(!!watchFilm);
         })
         .catch((error) => {
           console.log("Error al obtener detalles de películas:", error);
@@ -49,6 +54,16 @@ function FilmsDetails() {
     likeFilm(filmsDetail.id)
       .then(() => {
         setLiked(!liked);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleWatchListChange = () => {
+    toggleWatchlist(filmsDetail.id)
+      .then(() => {
+        setWatchList(!watchList);
       })
       .catch((err) => {
         console.log(err);
@@ -115,6 +130,14 @@ function FilmsDetails() {
                   externalItemId={id}
                   liked={liked}
                   onLikeChange={handleLikeChange}
+                />
+              </div>
+              <div>
+                <WatchlistButton
+                  userId={user.id}
+                  externalItemId={id}
+                  watchList={watchList}
+                  onLikeChange={handleWatchListChange}
                 />
               </div>
               <Link to={`/comments/${id}`} className="btn btn-primary mb-3">
