@@ -23,3 +23,12 @@ export const getFilmComments = (filmId) => {
   
   return http.get(`/films/${filmId}/comment`);
 };
+
+export const toggleWatchlist = (filmId) => {
+  console.log("Toggling watchlist for film with ID:", filmId);
+  return http.post(`/films/${filmId}/watchlist`);
+};
+
+export const getMyWatchlist = () => {
+  return http.get("/watchlist/me");
+};

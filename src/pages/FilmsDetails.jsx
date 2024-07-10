@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { detailsPopularMovies, CreditsPopularMovies } from "../services/TmdbService";
+import { detailsPopularMovies, CreditsPopularMovies, trailerMovie } from "../services/TmdbService";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { parseDate, parseYear, parseHours } from "../../public/utils";
 import LikeButton from "../components/LikeButton";
@@ -17,7 +17,8 @@ function FilmsDetails() {
   const [loading, setLoading] = useState(true);
   const [credits, setCredits] = useState({});
   const [liked, setLiked] = useState(false);
-  const [comments, setComments] = useState([])
+  const [comments, setComments] = useState([]);
+  const [trailers, setTrailers] = useState([]);  // Estado para almacenar trailers
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -25,13 +26,15 @@ function FilmsDetails() {
       Promise.all([
         detailsPopularMovies(id),
         CreditsPopularMovies(id),
+        trailerMovie(id),  // Llamada para obtener trailers
         getMyLikes(),
         getFilmComments(id),
       ])
-        .then(([film, credits, likes, comments]) => {
+        .then(([film, credits, trailers, likes, comments]) => {
           setFilmsDetail(film);
           setCredits(credits);
           setComments(comments);
+          setTrailers(trailers.results || []);  // Establecer trailers
           const likedFilm = likes.find((like) => like.externalItemId === id);
           setLiked(!!likedFilm);
         })
@@ -41,7 +44,7 @@ function FilmsDetails() {
         .finally(() => setLoading(false));
     }
   }, [id, user]);
-
+  
   const handleLikeChange = () => {
     likeFilm(filmsDetail.id)
       .then(() => {
@@ -61,23 +64,28 @@ function FilmsDetails() {
   }
 
   const backdropUrl = `https://image.tmdb.org/t/p/original${filmsDetail.backdrop_path}`;
+  const hasTrailer = trailers.length > 0;
+  console.log('Has trailer:', hasTrailer);  // Verificación de si hay trailers
 
-  
   return (
     <>
       <h1 className="mb-5">Films details</h1>
 
-      <div className={`card mb-3 card-background`} style={{ backgroundImage: `url(${backdropUrl})`, maxWidth: '100vw' }}>
+      <div className={`card mb-3 card-background `} style={{ backgroundImage: `url(${backdropUrl})`, maxWidth: '100vw' }}>
         <div className="card-overlay"></div>
         <div className="row g-0">
-          <div className="col-md-4 position-relative">
-            <Link to={`/movie/${id}/trailer`} className="d-block">
-              <img src={`https://image.tmdb.org/t/p/w500${filmsDetail.poster_path}`} className="img-fluid rounded-start" alt={filmsDetail.title} />
-              <div className="play-icon-overlay">
-                <FontAwesomeIcon icon={faPlay} size="3x" className="play-icon" />
-              </div>
-            </Link>
-          </div>
+        <div className="col-md-4">
+  <div className={`position-relative ${hasTrailer ? 'trailer-available' : ''}`}>
+    <img src={`https://image.tmdb.org/t/p/w500${filmsDetail.poster_path}`} className="img-fluid rounded-start" alt={filmsDetail.title} />
+    {hasTrailer && (
+      <div className="play-icon-overlay">
+        <Link to={`/movie/${id}/trailer`} className="d-block">
+          <FontAwesomeIcon icon={faPlay} size="4x" className="play-icon" />
+        </Link>
+      </div>
+    )}
+  </div>
+</div>
           <div className="col-md-8 card-content">
             <div className="card-body">
               <h1 className="card-title">
@@ -155,3 +163,4 @@ function FilmsDetails() {
 }
 
 export default FilmsDetails;
+

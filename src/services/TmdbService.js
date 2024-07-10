@@ -47,16 +47,45 @@ export const CreditsPopularMovies = (id) => {
   return httpTmdb.get(`/movie/${id}/credits`)
 }
 
-export const DiscoverMovies = () => {
+export const DiscoverMovies = (params) => {
   return httpTmdb.get('/discover/movie', {
     params: {
-      include_adult: true,
-      include_video: true,
+      include_adult: false,
+      include_video: false,
       language: 'es-ES',
       page: 1,
       sort_by: 'popularity.desc',
+      ...params,
     },
   });
 };
+
+export const getGenres = () => {
+  return httpTmdb.get('/genre/movie/list', {
+    params: {
+      language: 'es-ES',
+    },
+  });
+};
+
+export const searchPerson = (query) => {
+  return httpTmdb.get(`/search/person`, {
+    params: {
+      language: 'es-ES',
+      query: query,
+    },
+  });
+};
+
+export const getMovieCertifications = () => {
+  return httpTmdb.get('/certification/movie/list', {
+    params: {
+      language: 'es-ES',
+    },
+  });
+};
+
+
+
 
 export default httpTmdb;

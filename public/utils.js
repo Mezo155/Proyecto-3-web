@@ -27,3 +27,8 @@ export const parseHours = (minutes) => {
     return `${hours} h ${remainingMinutes} min`;
   }
 }
+
+export const formatVoteAverage = (number) => {
+  if (number == null) return '';  // Retorna una cadena vacía si el número es nulo o indefinido.
+  return number.toFixed(1);  // Redondea el número a un decimal.
+};

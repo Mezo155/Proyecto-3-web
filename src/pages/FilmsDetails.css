@@ -48,16 +48,17 @@
 }
 
 /* Atenuar la imagen y mostrar el icono al pasar el cursor */
-.position-relative:hover .play-icon-overlay {
-    opacity: 1; /* Mostrar el icono al pasar el cursor */
+.trailer-available:hover .play-icon-overlay {
+    opacity: 1;
 }
 
-/* Atenuar la imagen al pasar el cursor */
-.position-relative:hover img {
-    opacity: 0.6; /* Atenuar la imagen al pasar el cursor */
+.trailer-available .img-fluid {
+    transition: opacity 0.3s ease; /* Agregar transición a la imagen */
 }
 
-
+.trailer-available:hover .img-fluid {
+    opacity: 0.6;
+}
 .play-icon {
-    font-size: 4rem;
+    font-size: 5rem;
 }
