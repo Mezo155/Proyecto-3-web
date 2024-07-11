@@ -1,4 +1,3 @@
-// DiscoverMoviesComponent.js
 import React, { useEffect, useState } from 'react';
 import { DiscoverMovies, getGenres, searchPerson, getMovieCertifications } from '../services/TmdbService';
 import { parseDate, formatVoteAverage } from '../../public/utils';
@@ -22,17 +21,18 @@ const DiscoverMoviesComponent = () => {
 
   const [actorId, setActorId] = useState('');
   const [directorId, setDirectorId] = useState('');
+  const [page, setPage] = useState(1);  // Estado para la página actual
+  const [hasMoreMovies, setHasMoreMovies] = useState(true);  // Controla si hay más películas para cargar
 
   useEffect(() => {
-    // Fetch genres, certifications, and default movies
     getGenres()
       .then(data => {
         setGenres(data.genres);
         return getMovieCertifications();
       })
       .then(data => {
-        setCertifications(data.certifications.ES); // Adjust if the country changes
-        fetchMovies(); // Fetch default movies after fetching genres and certifications
+        setCertifications(data.certifications.ES); // Ajustar si cambia el país
+        fetchMovies(1); // Fetch default movies after fetching genres and certifications
       })
       .catch(err => {
         setError(err.message);
@@ -40,7 +40,7 @@ const DiscoverMoviesComponent = () => {
       });
   }, []);
 
-  const fetchMovies = () => {
+  const fetchMovies = (pageNum = 1) => {
     setLoading(true);  // Show spinner while loading data
 
     const { genre, year, ageRating, averageRating } = filters;
@@ -53,11 +53,19 @@ const DiscoverMoviesComponent = () => {
       'vote_average.gte': averageRating,
       with_cast: actorId,
       with_crew: directorId,
+      page: pageNum,  // Añadir el número de página a los parámetros
     };
 
     DiscoverMovies(params)
       .then(data => {
-        setMovies(data.results);
+        // Solo actualiza si hay nuevos resultados para evitar duplicados
+        if (pageNum === 1) {
+          setMovies(data.results);  // Reinicia el estado de las películas en la página 1
+        } else {
+          setMovies(prevMovies => [...prevMovies, ...data.results]);  // Añadir más películas a la lista existente
+        }
+        setPage(pageNum);  // Actualizar la página actual
+        setHasMoreMovies(data.results.length > 0);  // Determinar si hay más películas para cargar
         setLoading(false);  // Hide spinner when data is ready
       })
       .catch(err => {
@@ -115,16 +123,17 @@ const DiscoverMoviesComponent = () => {
   };
 
   const applyFilters = () => {
-    fetchMovies();  // Call fetchMovies to update results according to the filters
+    setMovies([]);  // Limpiar las películas actuales
+    setPage(1);  // Resetear la página
+    setHasMoreMovies(true);  // Asegurarse de que haya más películas para cargar
+    fetchMovies(1);  // Cargar películas de la primera página
   };
 
-  if (loading && !error) return (
+  if (loading && !error && movies.length === 0) return (
     <div className="spinner-border" role="status">
       <span className="visually-hidden">Loading...</span>
     </div>
   );
-
-  if (error) return <p>Error: {error}</p>;
 
   return (
     <div>
@@ -168,19 +177,6 @@ const DiscoverMoviesComponent = () => {
             ))}
         </select>
 
-        {/* <label htmlFor="average-rating-select">Select Average Rating: </label>
-        <input
-          id="average-rating-select"
-          name="averageRating"
-          type="number"
-          step="1"
-          placeholder="Average Rating"
-          value={filters.averageRating}
-          onChange={handleFilterChange}
-          min="0"
-          max="10"
-        /> */}
-
         <label htmlFor="actor-input">Select Actor: </label>
         <input
           id="actor-input"
@@ -219,9 +215,17 @@ const DiscoverMoviesComponent = () => {
           </div>
         ))}
       </div>
+      {loading && movies.length > 0 && !error && (
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      )}
+      {hasMoreMovies && !loading && !error && (
+        <button onClick={() => fetchMovies(page + 1)}>Ver Más Películas</button>
+      )}
+      {error && <p>Error: {error}</p>}
     </div>
   );
 };
 
 export default DiscoverMoviesComponent;
-
