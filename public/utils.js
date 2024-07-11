@@ -32,3 +32,10 @@ export const formatVoteAverage = (number) => {
   if (number == null) return '';  // Retorna una cadena vacía si el número es nulo o indefinido.
   return number.toFixed(1);  // Redondea el número a un decimal.
 };
+
+export const parseDateObj = (dateObj) => {
+  const year = dateObj.getFullYear();
+  const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+  const day = String(dateObj.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`; // "2024-07-12"
+};

@@ -202,7 +202,7 @@ const DiscoverMoviesComponent = () => {
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
         {movies.map((movie) => (
           <div className="col" key={movie.id}>
-            <Link to={`/details/${movie.id}`} className="card h-100 card-size text-decoration-none text-dark">
+            <Link to={`/details/${movie.id}`} className="card1 h-100 card-size text-decoration-none text-dark">
               <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className="card-img-top" alt={movie.title} />
               <div className="card-body">
                 <h5 className="card-title">{movie.title}</h5>

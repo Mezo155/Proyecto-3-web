@@ -1,0 +1,8 @@
+.card1 {
+    width: 100%; /* La tarjeta abarcará todo el ancho del contenedor */
+    border: none; /* Eliminar el borde de la tarjeta */
+    padding: 0; /* Eliminar el padding de la tarjeta */
+    display: flex;
+    flex-direction: column;
+  }
+  

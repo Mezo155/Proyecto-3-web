@@ -1,20 +1,84 @@
-.card {
-    border: none;
-    padding: 0;
+/* Estilos para el contenedor de películas con scroll horizontal */
+.films-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px; /* Espacio entre las tarjetas */
+  padding-bottom: 16px; /* Espacio debajo para evitar el corte */
 }
 
-.search-input {
+.films-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.films-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.films-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.card2 {
+  flex: 0 0 auto; /* Evita que las tarjetas se redimensionen */
+  width: 200px; /* Ajusta el tamaño de las tarjetas según sea necesario */
+  border: none;
+  padding: 0;
+}
+
+.search-container {
+text-align: center;
+  margin-bottom: 0; /* Asegura un espacio consistente debajo del campo de búsqueda */
+  background-image: url('https://img.freepik.com/foto-gratis/collage-fondo-pelicula_23-2149876004.jpg'); /* Asegúrate de reemplazar 'backdrop.jpg' con una imagen válida */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding:0; /* Añadido para dar espacio alrededor del campo de búsqueda */
+  border-radius: 15px; 
+  height: 500px;
+  box-sizing: border-box; /* Incluye el padding y el borde en el cálculo del ancho y alto del contenedor */
+  display: flex; /* Usa Flexbox para el diseño del contenido */
+  flex-direction: column; /* Organiza los elementos en una columna */
+  justify-content: center; /* Centra verticalmente el contenido */
+  align-items: center;
+  }
+  
+  /* Estilos para el input de búsqueda */
+  .search-input {
     width: 100%;
+    max-width: 500px; /* Ajusta el ancho máximo según tus necesidades */
     height: 46px;
     line-height: 46px;
     font-size: 1.1em;
-    color: black;
-    border: 2px, solid, black;
-    border-radius: 30px;
-    padding: 10px 20px;
-}
+    color: black; /* Color del texto */
+    border: 2px solid black; /* Borde negro del campo de búsqueda */
+    border-radius: 30px; /* Bordes redondeados */
+    padding: 0 20px; /* Añadido solo padding horizontal */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra opcional */
+    outline: none; /* Elimina el contorno de enfoque por defecto */
+  }
+  
+  /* Estilos al enfocar el input */
+  .search-input:focus {
+    border: 3px solid black; /* Asegúrate de mantener el borde negro al enfocar */
+  }
+  
+  /* Estilo del placeholder */
+  .search-input::placeholder {
+    color: rgba(0, 0, 0, 0.7); /* Color del texto del placeholder */
+    opacity: 1; /* Asegúrate de que el placeholder sea completamente opaco */
+  }
 
-.search-input:focus {
-    outline: none; /* Evita el borde adicional al enfocar */
-    border: 3px, solid, black;/* Asegúrate de mantener el borde negro al enfocar */
-}
+  .welcome-title {
+    color: white; /* Color del texto */
+    font-size: 5rem; /* Tamaño del texto */
+    font-weight: bold; /* Grosor del texto */
+    margin-bottom: 0.5rem; /* Espacio debajo del h1 */
+  }
+  
+  .explore-title {
+    color: white; /* Color del texto */
+    font-size: 3.5rem; /* Tamaño del texto */
+    font-weight: normal; /* Grosor del texto */
+    margin-bottom: 1.5rem; /* Espacio debajo del h2 */
+  }

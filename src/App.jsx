@@ -12,6 +12,7 @@ import Profile from './pages/Profile'
 import Comment from './pages/Comment'
 import EditProfile from './pages/EditProfile'
 import DiscoverMoviesComponent from './pages/FindFilms'
+import MovieSearch from './components/MovieSearch'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/movie/discover' element={<DiscoverMoviesComponent/>}/>
           <Route path="/comments/:filmId" element={<Comment/>}/>
           <Route path="/" element={<Home />} />
+          <Route path="/search" element={< MovieSearch/>} />
           <Route path="/details/:id" element={
             <ProtectedRoute>
               <FilmsDetails/>
