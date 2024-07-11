@@ -33,7 +33,8 @@ function FilmsDetails() {
         getMyWatchlist(),
         getFilmComments(id),
       ])
-        .then(([film, credits, trailers, likes, comments, watchLists]) => {
+        .then(([film, credits, trailers, likes, watchLists, comments]) => {
+          console.log("es un arrray", comments)
           setFilmsDetail(film);
           setCredits(credits);
           setComments(comments);
@@ -41,7 +42,7 @@ function FilmsDetails() {
           const likedFilm = likes.find((like) => like.externalItemId === id);
           setLiked(!!likedFilm);
           const watchFilm = watchLists.find((watchList) => watchList.externalItemId === id);
-          setLiked(!!watchFilm);
+          setWatchList(!!watchFilm);
         })
         .catch((error) => {
           console.log("Error al obtener detalles de películas:", error);
