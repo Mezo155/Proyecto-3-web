@@ -1,6 +1,9 @@
 import { likeFilm } from '../services/filmsServices';
 import { AuthContext } from '../contexts/AuthContext';
 import { useContext } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import "./LikeButton.css"
 
 /* const api = axios.create({
     baseURL: 'http://localhost:3000/api',  // Cambia esto a la URL de tu servidor backend en producción
@@ -32,9 +35,9 @@ import { useContext } from 'react';
   
   
     return (
-      <button type='button' onClick={onLikeChange} className={liked ? 'liked' : 'not-liked'}>
-        {liked ? 'Dislike' : 'Like'}
-      </button>
+      <button type='button' onClick={handleLike} className='like-button'>
+      <FontAwesomeIcon icon={faHeart} className={liked ? 'liked' : 'not-liked'} />
+    </button>
     );
   };
   

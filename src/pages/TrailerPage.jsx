@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { trailerMovie, detailsPopularMovies } from '../services/TmdbService';
 import "./TrailerPage.css"
+import { useNavigate } from 'react-router-dom';
 
 
 function TrailerPage() {
   const { id } = useParams();
   const [trailerKey, setTrailerKey] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate()
 
   useEffect(() => {
     // Obtén los detalles de la película y los tráileres
@@ -43,7 +45,8 @@ function TrailerPage() {
   }
 
   if (!trailerKey) {
-    // Si no hay tráiler, no se renderiza nada
+    // Redirige a /details/:id si no hay tráiler
+   
     return null;
   }
 

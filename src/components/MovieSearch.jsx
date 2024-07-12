@@ -1,7 +1,8 @@
 // MovieSearch.js
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { searchMovies } from '../services/TmdbService';  // Asegúrate de importar la función correcta
+import { formatVoteAverage, parseDate } from '../../public/utils';  // Asegúrate de tener estas funciones en utils.js
 
 const MovieSearch = () => {
   const [results, setResults] = useState([]);
@@ -37,23 +38,25 @@ const MovieSearch = () => {
           <span className="visually-hidden">Loading...</span>
         </div>
       ) : (
-        <div className="results">
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
           {results.length > 0 ? (
-            <ul>
-              {results.map((movie) => (
-                <li key={movie.id}>
+            results.map((movie) => (
+              <div className="col" key={movie.id}>
+                <Link to={`/details/${movie.id}`} className="card1 h-100 card-size text-decoration-none text-dark">
                   <img
-                    src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    className="card-img-top"
                     alt={movie.title}
                   />
-                  <div>
-                    <h3>{movie.title}</h3>
-                    <p>{movie.release_date}</p>
-                    <p>{movie.overview}</p>
+                  <div className="card-body">
+                    <h5 className="card-title">{movie.title}</h5>
+                    <p className="card-text mb-0">{parseDate(movie.release_date)}</p>
+                    <p className="card-average mb-0">{formatVoteAverage(movie.vote_average)}</p>
+                  
                   </div>
-                </li>
-              ))}
-            </ul>
+                </Link>
+              </div>
+            ))
           ) : (
             <p>No se encontraron resultados.</p>
           )}

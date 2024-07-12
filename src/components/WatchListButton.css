@@ -1,0 +1,16 @@
+.watchlist-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 35px;  /* Ajusta el tamaño según sea necesario */
+  }
+  
+  .in-watchlist {
+    color: yellow;  /* O cualquier color que prefieras para el estado en la lista de seguimiento */
+  }
+  
+  .not-in-watchlist {
+    color: white;  /* O cualquier otro color que prefieras para el estado no en la lista de seguimiento */
+  }
+  

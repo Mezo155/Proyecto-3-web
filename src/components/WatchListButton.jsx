@@ -1,8 +1,11 @@
 import { useContext } from 'react';
 import { toggleWatchlist } from '../services/filmsServices';
 import { AuthContext } from '../contexts/AuthContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookmark } from '@fortawesome/free-solid-svg-icons';
+import "./WatchListButton.css"
 
-const WatchlistButton = ({ externalItemId, inWatchlist, onWatchlistChange }) => {
+const WatchlistButton = ({ externalItemId, watchList, onWatchListChange }) => {
   const { user } = useContext(AuthContext);
 
   if (!user) {
@@ -16,8 +19,9 @@ const WatchlistButton = ({ externalItemId, inWatchlist, onWatchlistChange }) => 
     }
     console.log('Toggling watchlist for film with ID:', externalItemId);
     toggleWatchlist(externalItemId)
-      .then(() => {
-        onWatchlistChange && onWatchlistChange(!inWatchlist);  // Cambia el estado en el componente padre
+      .then(response => {
+        console.log(response)
+        onWatchListChange && onWatchListChange(!watchList);  // Cambia el estado en el componente padre
       })
       .catch(error => {
         console.error('Error toggling watchlist', error);
@@ -25,12 +29,9 @@ const WatchlistButton = ({ externalItemId, inWatchlist, onWatchlistChange }) => 
   };
 
   return (
-    <button
-      type='button'
-      onClick={handleWatchlist}
-      className={inWatchlist ? 'in-watchlist' : 'not-in-watchlist'}
-    >
-      {inWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
+    <button type='button' onClick={handleWatchlist} className='watchlist-button'>
+      <FontAwesomeIcon icon={faBookmark} className={watchList ? 'in-watchlist' : 'not-in-watchlist'} />
+      {watchList ? ' Remove from Watchlist' : ' Add to Watchlist'}
     </button>
   );
 };

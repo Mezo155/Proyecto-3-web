@@ -34,11 +34,15 @@ function FilmsDetails() {
         getFilmComments(id),
       ])
         .then(([film, credits, trailers, likes, watchLists, comments]) => {
-          console.log("es un arrray", comments)
           setFilmsDetail(film);
           setCredits(credits);
           setComments(comments);
-          setTrailers(trailers.results || []);  // Establecer trailers
+          const officialTrailer = trailers.results.find(video =>
+            (video.name.toLowerCase().includes('tráiler') || video.name.toLowerCase().includes('trailer')) &&
+            video.name.toLowerCase().includes('español')
+          );
+
+          setTrailers(officialTrailer ? officialTrailer.key : null);
           const likedFilm = likes.find((like) => like.externalItemId === id);
           setLiked(!!likedFilm);
           const watchFilm = watchLists.find((watchList) => watchList.externalItemId === id);
@@ -61,14 +65,9 @@ function FilmsDetails() {
       });
   };
 
-  const handleWatchListChange = () => {
-    toggleWatchlist(filmsDetail.id)
-      .then(() => {
-        setWatchList(!watchList);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const handleWatchlistChange = (newWatchlistStatus) => {
+    console.log('Updating Watchlist state to:', newWatchlistStatus);  // Verifica el nuevo estado
+    setWatchList(newWatchlistStatus);  // Actualiza el estado
   };
 
   if (loading) {
@@ -80,7 +79,7 @@ function FilmsDetails() {
   }
 
   const backdropUrl = `https://image.tmdb.org/t/p/original${filmsDetail.backdrop_path}`;
-  const hasTrailer = trailers.length > 0;
+  const hasTrailer = trailers !== null;
   console.log('Has trailer:', hasTrailer);  // Verificación de si hay trailers
 
   return (
@@ -138,7 +137,7 @@ function FilmsDetails() {
                   userId={user.id}
                   externalItemId={id}
                   watchList={watchList}
-                  onLikeChange={handleWatchListChange}
+                  onWatchListChange={handleWatchlistChange}
                 />
               </div>
               <Link to={`/comments/${id}`} className="btn btn-primary mb-3">
