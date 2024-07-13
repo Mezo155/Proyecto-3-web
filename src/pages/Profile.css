@@ -1,0 +1,11 @@
+.card-borderless {
+    border: none !important;
+}
+
+.user-profile {
+    background-image: url('https://img.freepik.com/vector-gratis/fondo-pelicula-vieja-dibujado-mano_23-2151274524.jpg?t=st=1720842165~exp=1720845765~hmac=01945d7311de86d8e51a685f1af0bc3fa50dc014718ef668a341294443ac723b&w=1800');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 15vh;  /* Asegura que el fondo cubra toda la altura del viewport */
+  }

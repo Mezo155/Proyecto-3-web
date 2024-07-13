@@ -13,3 +13,38 @@
   .not-liked {
     color: white;  /* O cualquier otro color que prefieras para el estado no liked */
   }
+
+  .tooltip-container1 {
+    position: relative;
+    display: inline-flex; /* Asegura que el contenedor se ajuste al tamaño del contenido */
+    align-items: center;
+    margin-right: 200px;
+     /* Centra verticalmente el contenido */
+  }
+  
+  /* Tooltip text */
+  .tooltip-text1 {
+    visibility: hidden;
+    opacity: 0;
+    width: 180px; /* Ajusta el ancho del tooltip según tus necesidades */
+    background-color: #0D6EFD; /* Color de fondo del tooltip */
+    color: #fff; /* Color del texto del tooltip */
+    text-align: center;
+    border-radius: 4px; /* Bordes redondeados del tooltip */
+    padding: 5px 10px; /* Espaciado dentro del tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%; /* Posiciona el tooltip abajo del botón */
+    left: 50%;
+    transform: translateX(-50%); /* Centra el tooltip horizontalmente en relación con el contenedor */
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap; /* Evita el texto en varias líneas */
+    pointer-events: none; /* Asegura que el tooltip no capture eventos del ratón */
+  }
+  
+  /* Aparece el tooltip al hacer hover sobre el contenedor */
+  .tooltip-container1:hover .tooltip-text1 {
+    visibility: visible;
+    opacity: 1;
+  }

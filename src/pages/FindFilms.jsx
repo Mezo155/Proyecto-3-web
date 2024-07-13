@@ -202,17 +202,18 @@ const DiscoverMoviesComponent = () => {
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
         {movies.map((movie) => (
           <div className="col" key={movie.id}>
-            <Link to={`/details/${movie.id}`} className="card1 h-100 card-size text-decoration-none text-dark">
-              <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className="card-img-top" alt={movie.title} />
-              <div className="card-body">
+          <Link to={`/details/${movie.id}`} className="card1 h-100 text-decoration-none text-dark d-flex flex-column">
+            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className="card-img-top" alt={movie.title} />
+            <div className="card-body d-flex flex-column justify-content-between">
+              <div>
                 <h5 className="card-title">{movie.title}</h5>
-                <div className="d-flex align-items-center justify-content-between">
-                  <p className="card-average mb-0">{formatVoteAverage(movie.vote_average)}</p>
-                  <p className="card-text mb-0">{parseDate(movie.release_date)}</p>
-                </div>
               </div>
-            </Link>
-          </div>
+              <div className="d-flex justify-content-center align-items-center mt-auto">
+                <p className="card-text mb-0">{parseDate(movie.release_date)}</p>
+              </div>
+            </div>
+          </Link>
+        </div>
         ))}
       </div>
       {loading && movies.length > 0 && !error && (

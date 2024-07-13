@@ -1,3 +1,5 @@
+
+
 .card-background {
     background-size: cover;
     background-position: center;
@@ -62,3 +64,130 @@
 .play-icon {
     font-size: 5rem;
 }
+
+.button-row {
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+    align-items: center;    /* Alinea los botones verticalmente */
+    gap: 10rem;             /* Espacio entre los botones */
+    margin-bottom: 1rem; 
+     /* Espacio debajo de la fila */
+  }
+  
+  .button-container {
+    display: flex;
+    /* Distribuye el espacio entre los botones */
+     /* Ajusta el ancho máximo si es necesario */
+  }
+  
+  .button-container > * {
+    flex: 1; /* Los botones ocupan el mismo ancho */
+  }
+  
+  .films-container1 {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px; /* Espacio entre las tarjetas */
+    padding-bottom: 16px; /* Espacio debajo para evitar el corte */
+  }
+  
+  .films-container1::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .films-container1::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+  
+  .films-container1::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
+  .card3 {
+    flex: 0 0 auto; /* Evita que las tarjetas se redimensionen */
+  width: 200px; /* Ajusta el tamaño de las tarjetas según sea necesario */
+  border: none;
+  padding: 0; /* Ajusta el ancho de las tarjetas */
+  }
+  
+  .director-name {
+    position: absolute;
+    bottom: 10px; /* Ajusta esta distancia según sea necesario */
+    left: 10px;  /* Ajusta esta distancia según sea necesario */
+ /* Fondo semitransparente para mejor legibilidad */
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff; /* Color de texto blanco */
+  }
+
+  .btn-criticism {
+    position: absolute;
+    bottom: 10px; /* Ajusta esta distancia según sea necesario */
+    right: 10px;  /* Ajusta esta distancia según sea necesario */
+  }
+
+  .comment-card {
+    border: none !important; /* Quitar el borde de la tarjeta de comentarios */
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    background-color: #f9f9f9;
+    text-align: left; /* Alinea el texto a la izquierda */
+    max-width: 100%; /* Ajusta el ancho máximo de la tarjeta a su contenedor */
+    margin-left: 0; /* Alinea la tarjeta a la izquierda */
+    margin-right: 0; /* Elimina el centrado horizontal */
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.profile-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-weight: bold; /* Hace que el nombre esté en negrita */
+}
+
+.comment-title {
+    margin-top: 0;
+    color: #007bff; /* Color azul para el título */
+}
+
+.comment-text {
+    margin-bottom: 0;
+    color: #0c0c0c;
+}
+
+hr {
+     /* Asegura que el hr ocupe el 100% del ancho del contenedor */
+    margin: 12px 0; /* Espacio arriba y abajo */
+    border: 0; /* Quita el borde por defecto */
+    border-top: 6px solid black !important; /* Aumenta el grosor a 8px y color del borde superior */
+    
+}
+
+.list-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea todos los ítems a la izquierda */
+    padding: 0;
+    margin: 0;
+}
+
+.list-group-item {
+    width: 100%; /* Asegura que el item ocupe el 100% del ancho del contenedor */
+    box-sizing: border-box; /* Incluye el padding en el ancho total del elemento */
+  }

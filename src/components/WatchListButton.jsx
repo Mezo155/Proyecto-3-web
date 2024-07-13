@@ -29,10 +29,16 @@ const WatchlistButton = ({ externalItemId, watchList, onWatchListChange }) => {
   };
 
   return (
-    <button type='button' onClick={handleWatchlist} className='watchlist-button'>
+    <div className='tooltip-container'>
+    <button
+      type='button'
+      onClick={handleWatchlist}
+      className='watchlist-button'
+    >
       <FontAwesomeIcon icon={faBookmark} className={watchList ? 'in-watchlist' : 'not-in-watchlist'} />
-      {watchList ? ' Remove from Watchlist' : ' Add to Watchlist'}
     </button>
+    <span className="tooltip-text">Añadir a tu lista de seguimiento</span>
+</div>
   );
 };
 

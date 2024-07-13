@@ -1,0 +1,40 @@
+/* EditUser.css */
+
+/* Otras reglas de CSS */
+
+.edit-user-background {
+    background-image: url('https://img.freepik.com/psd-gratis/fondo-banner-blanco-cine-3d_23-2150822410.jpg?w=1800&t=st=1720838117~exp=1720838717~hmac=022c335f3033a54dc341f0bcf6a3337413324638169c3ddb391d5818c60683d5');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;  /* Add padding around the content */
+    min-height: 70vh;  /* Minimum height for the container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
+
+.edit-user-container {
+    background-color: #F54343;  /* Red background */
+    padding: 30px;
+    border-radius: 25px;  /* More rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Subtle shadow */
+    max-width: 500px;  /* Limit the maximum width */
+    width: 100%;  /* Full width within the max width constraint */
+}
+
+.edit-user-form .form-control {
+    border-radius: 25px;  /* Add border-radius to input fields */
+}
+
+.edit-user-form .btn-primary {
+    background-color: #6c5ce7;  /* Purple color */
+    border-color: #6c5ce7;  /* Matching border color */
+    border-radius: 25px;  /* Border-radius for the button */
+}
+
+/* To override the default primary button color */
+.edit-user-form .btn-primary:hover {
+    background-color: #5a4cc9;  /* Darker purple on hover */
+    border-color: #5a4cc9;  /* Matching border color on hover */
+}

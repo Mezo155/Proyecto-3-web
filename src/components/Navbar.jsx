@@ -30,15 +30,21 @@ function Navbar() {
               </>
             ) : (
               <>
-              <li className="nav-item">
-              <Link className="nav-link" aria-current="page" to="/movie/discover">Descubre</Link>
-              </li>
-              <li className="nav-item">
-              <Link className="nav-link" aria-current="page" to="/profile">Perfil</Link>
-              </li>
-              <li className="nav-item">
-                <button onClick={logout} className="btn btn-danger">Logout</button>
-              </li>
+                <li className="nav-item">
+                  <Link className="nav-link" aria-current="page" to="/movie/discover">Descubre</Link>
+                </li>
+                <li className="nav-item dropdown">
+                  <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Perfil
+                  </a>
+                  <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><Link className="dropdown-item" to="/profile">Ver Perfil</Link></li>
+                    <li><Link className="dropdown-item" to="/profile/edit">Editar Perfil</Link></li>
+                  </ul>
+                </li>
+                <li className="nav-item">
+                  <button onClick={logout} className="btn btn-danger">Logout</button>
+                </li>
               </>
             )}
           </ul>

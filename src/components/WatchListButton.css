@@ -1,16 +1,65 @@
+/* WatchListButton.css */
+
+/* Estilo para el botón */
 .watchlist-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    font-size: 35px;  /* Ajusta el tamaño según sea necesario */
-  }
-  
-  .in-watchlist {
-    color: yellow;  /* O cualquier color que prefieras para el estado en la lista de seguimiento */
-  }
-  
-  .not-in-watchlist {
-    color: white;  /* O cualquier otro color que prefieras para el estado no en la lista de seguimiento */
-  }
-  
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 35px; /* Ajusta el tamaño del icono */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  color: white; /* Color del texto del botón */
+}
+
+/* Estilo para el icono del bookmark */
+.watchlist-button .fa-bookmark {
+  transition: color 0.3s ease;
+}
+
+/* Color del icono cuando está en la lista de seguimiento */
+.in-watchlist {
+  color: rgb(2, 255, 61); /* Cambia a tu color deseado cuando está en la lista de seguimiento */
+}
+
+/* Color del icono cuando no está en la lista de seguimiento */
+.not-in-watchlist {
+  color: white; /* Cambia a tu color deseado cuando no está en la lista de seguimiento */
+}
+
+/* Tooltip Container */
+.tooltip-container {
+  position: relative;
+  display: inline-flex; /* Asegura que el contenedor se ajuste al tamaño del contenido */
+  align-items: center; /* Centra verticalmente el contenido */
+}
+
+/* Tooltip text */
+.tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  width: 240px; /* Ajusta el ancho del tooltip según tus necesidades */
+  background-color: #0D6EFD; /* Color de fondo del tooltip */
+  color: #fff; /* Color del texto del tooltip */
+  text-align: center;
+  border-radius: 4px; /* Bordes redondeados del tooltip */
+  padding: 5px 10px; /* Espaciado dentro del tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 80%; /* Posiciona el tooltip debajo del botón */
+  left: 50%;
+  transform: translate(-50%, 10px); /* Centra el tooltip horizontalmente y lo desplaza hacia abajo desde el botón */
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap; /* Evita el texto en varias líneas */
+  pointer-events: none; /* Asegura que el tooltip no capture eventos del ratón */
+}
+
+/* Aparece el tooltip al hacer hover sobre el contenedor */
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Opcional: añade una flecha al tooltip */
