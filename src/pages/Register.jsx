@@ -64,7 +64,7 @@ const Register = () => {
       
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="userName" className="form-label">Username</label>
+          <label htmlFor="userName" className="form-label">Nombre</label>
           <input onChange={handleInputChange} value={user.userName} type="text" className="form-control" name="userName" id="userName" required placeholder="Add a username..." />
         </div>
 
@@ -74,12 +74,12 @@ const Register = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="password" className="form-label">Password</label>
+          <label htmlFor="password" className="form-label">Contraseña</label>
           <input onChange={handleInputChange} value={user.password} type="password" className="form-control" name="password" id="password" required placeholder="Add a password..." />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="image" className="form-label">Profile Image</label>
+          <label htmlFor="image" className="form-label">Imagen de perfil</label>
           <input onChange={handleFileChange} type="file" className="form-control" name="image" id="image" />
         </div>
 

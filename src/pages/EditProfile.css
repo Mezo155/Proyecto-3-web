@@ -11,7 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 25px;
+    
 }
 
 .edit-user-container {
@@ -27,14 +27,14 @@
     border-radius: 25px;  /* Add border-radius to input fields */
 }
 
-.edit-user-form .btn-primary {
+.edit-user-form .btn-primary3 {
     background-color: #6c5ce7;  /* Purple color */
     border-color: #6c5ce7;  /* Matching border color */
     border-radius: 25px;  /* Border-radius for the button */
 }
 
 /* To override the default primary button color */
-.edit-user-form .btn-primary:hover {
+.edit-user-form .btn-primary3:hover {
     background-color: #5a4cc9;  /* Darker purple on hover */
     border-color: #5a4cc9;  /* Matching border color on hover */
 }

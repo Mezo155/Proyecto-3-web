@@ -9,13 +9,96 @@
    /* Añadir una sombra sutil para dar profundidad */
 
   }
-  .card-text {
-    font-size: 0.875rem; /* Ajusta el tamaño del texto */
-    color: #6c757d; /* Un color gris claro */
+  .card8 {
+    background: url('https://www.eltelegrafo.com.ec/media/k2/items/cache/1ecac002c3f59a93b129588e9e740243_XL.jpg') no-repeat center center/cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 100vW;
+    margin: 20px auto;
+    position: relative; /* Necesario para el pseudo-elemento */
+    overflow: hidden; /* Asegura que el pseudo-elemento no desborde */
   }
   
-  .card-text.age-rating {
+  /* Pseudo-elemento para el overlay de la imagen de fondo */
+  .card8::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Aténuación con color negro */
+    z-index: 1; /* Asegura que el overlay esté sobre la imagen de fondo */
+  }
+  
+  /* Estilos para el contenido dentro de la tarjeta */
+  .card8 h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #fff; /* Color de texto blanco para contraste */
+    position: relative; /* Asegura que el título esté sobre el overlay */
+    z-index: 2;
+  }
+  
+  .card8 form {
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Asegura que el formulario esté sobre el overlay */
+    z-index: 2;
+  }
+  
+  .card8 label {
     font-weight: bold;
-    color: #007bff; /* Puedes elegir un color diferente para la calificación */
+    margin-bottom: 8px;
+    color: #fff; /* Color de texto blanco para contraste */
   }
   
+  .card8 select, .card8 input {
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    background-color: #fff; /* Fondo blanco para los campos */
+  }
+  
+  .card8 button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 150px;
+    align-self: center;
+  }
+  
+  .card8 button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilo para el texto del placeholder */
+  .card8 input::placeholder {
+    color: #888;
+  }
+  
+  .button-ultimate {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 150px;
+    align-self: center; /* Centra el botón horizontalmente en el contenedor */
+  }
+  
+  /* Estilo para el estado hover del botón */
+  .button-ultimate:hover {
+    background-color: #0056b3;
+  }

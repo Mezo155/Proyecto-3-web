@@ -95,7 +95,7 @@ const EditUser = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">Guardar cambios</button>
+        <button type="submit" className="btn btn-primary3">Guardar cambios</button>
       </form>
     </div>
   </div>

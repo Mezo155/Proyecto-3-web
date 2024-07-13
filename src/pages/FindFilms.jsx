@@ -136,95 +136,102 @@ const DiscoverMoviesComponent = () => {
   );
 
   return (
-    <div>
-      <h1>Discover Movies</h1>
-      <div>
-        <label htmlFor="genre-select">Select Genre: </label>
-        <select id="genre-select" name="genre" onChange={handleFilterChange} value={filters.genre}>
-          <option value="">All</option>
-          {genres.map((genre) => (
-            <option key={genre.id} value={genre.id}>
-              {genre.name}
-            </option>
-          ))}
-        </select>
+    <div className="container">
+      <div class="card8">
+  
+  <form>
+    <label htmlFor="genre-select">Selecciona género:</label>
+    <select id="genre-select" name="genre" onChange={handleFilterChange} value={filters.genre}>
+      <option value="">Todo</option>
+      {genres.map((genre) => (
+        <option key={genre.id} value={genre.id}>
+          {genre.name}
+        </option>
+      ))}
+    </select>
 
-        <label htmlFor="year-select">Select Year: </label>
-        <input
-          id="year-select"
-          name="year"
-          type="number"
-          placeholder="Year"
-          value={filters.year}
-          onChange={handleFilterChange}
-          min="1900"
-          max={new Date().getFullYear()}
-        />
-        <label htmlFor="age-rating-select">Select Age Rating: </label>
-        <select
-          id="age-rating-select"
-          name="ageRating"
-          value={filters.ageRating}
-          onChange={handleFilterChange}
-        >
-          <option value="">All</option>
-          {certifications
-            .filter(cert => cert.certification !== 'Ai' && cert.certification !== '7i' && cert.certification !== 'X')
-            .map(cert => (
-              <option key={cert.certification} value={cert.certification}>
-                {cert.certification}: {cert.description}
-              </option>
-            ))}
-        </select>
+    <label htmlFor="year-select">Seleccion año:</label>
+    <input
+      id="year-select"
+      name="year"
+      type="number"
+      placeholder="Año"
+      value={filters.year}
+      onChange={handleFilterChange}
+      min="1900"
+      max={new Date().getFullYear()}
+    />
 
-        <label htmlFor="actor-input">Select Actor: </label>
-        <input
-          id="actor-input"
-          name="actor"
-          type="text"
-          placeholder="Actor Name"
-          value={filters.actor}
-          onChange={handlePersonChange}
-        />
+    <label htmlFor="age-rating-select">Selecciona edad:</label>
+    <select
+      id="age-rating-select"
+      name="ageRating"
+      value={filters.ageRating}
+      onChange={handleFilterChange}
+    >
+      <option value="">Todo</option>
+      {certifications
+        .filter(cert => cert.certification !== 'Ai' && cert.certification !== '7i' && cert.certification !== 'X')
+        .map(cert => (
+          <option key={cert.certification} value={cert.certification}>
+            {cert.certification}: {cert.description}
+          </option>
+        ))}
+    </select>
 
-        <label htmlFor="director-input">Select Director: </label>
-        <input
-          id="director-input"
-          name="director"
-          type="text"
-          placeholder="Director Name"
-          value={filters.director}
-          onChange={handlePersonChange}
-        />
+    <label htmlFor="actor-input">Seleccion actor:</label>
+    <input
+      id="actor-input"
+      name="actor"
+      type="text"
+      placeholder="Nombre de actor"
+      value={filters.actor}
+      onChange={handlePersonChange}
+    />
 
-        <button onClick={applyFilters}>Apply Filters</button>
-      </div>
+    <label htmlFor="director-input">Selecciona director:</label>
+    <input
+      id="director-input"
+      name="director"
+      type="text"
+      placeholder="Nombre de director"
+      value={filters.director}
+      onChange={handlePersonChange}
+    />
+
+    <button type="button" onClick={applyFilters}>Aplicar Filtros</button>
+  </form>
+</div>
+
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
         {movies.map((movie) => (
           <div className="col" key={movie.id}>
-          <Link to={`/details/${movie.id}`} className="card1 h-100 text-decoration-none text-dark d-flex flex-column">
-            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className="card-img-top" alt={movie.title} />
-            <div className="card-body d-flex flex-column justify-content-between">
-              <div>
-                <h5 className="card-title">{movie.title}</h5>
+            <Link to={`/details/${movie.id}`} className="card1 h-100 text-decoration-none text-dark d-flex flex-column">
+              <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className="card-img-top" alt={movie.title} />
+              <div className="card-body d-flex flex-column justify-content-between">
+                <div>
+                  <h5 className="card-title">{movie.title}</h5>
+                </div>
+                <div className="d-flex justify-content-center align-items-center mt-auto">
+                  <p className="card-text mb-0">{parseDate(movie.release_date)}</p>
+                </div>
               </div>
-              <div className="d-flex justify-content-center align-items-center mt-auto">
-                <p className="card-text mb-0">{parseDate(movie.release_date)}</p>
-              </div>
-            </div>
-          </Link>
-        </div>
+            </Link>
+          </div>
         ))}
       </div>
+
       {loading && movies.length > 0 && !error && (
         <div className="spinner-border" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
       )}
+
       {hasMoreMovies && !loading && !error && (
-        <button onClick={() => fetchMovies(page + 1)}>Ver Más Películas</button>
+        <button className='button-ultimate' onClick={() => fetchMovies(page + 1)}>Ver Más Películas</button>
       )}
-      {error && <p>Error: {error}</p>}
+
+      {error && <p className="text-danger">Error: {error}</p>}
     </div>
   );
 };

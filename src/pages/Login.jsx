@@ -58,7 +58,7 @@ const Login = () => {
           </div>
 
           <div className="mb-3-2">
-            <label htmlFor="password" className="form-label2">Password</label>
+            <label htmlFor="password" className="form-label2">Contraseña</label>
             <input
               name="password"
               onChange={handleInputChange}
@@ -71,7 +71,7 @@ const Login = () => {
             />
           </div>
           {error && <p className="text-danger2">{error.message}</p>}
-          <button type="submit" className="btn-primary2">Login</button>
+          <button type="submit" className="btn-primary2">Logearse</button>
         </form>
       </div>
     </div>
