@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { createUser } from "../services/LocalService";
 import { Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import "./Register.css"
 
 const Register = () => {
   const { user: currentUser, isAuthLoaded } = useContext(AuthContext);
@@ -58,17 +59,18 @@ const Register = () => {
   }
 
   return (
-    <div>
-      <h1 className="mb-3">Register</h1>
+    <div className="register-container">
+    <div className="register-form-container">
+      
       <form onSubmit={handleSubmit}>
-      <div className="mb-3">
-          <label htmlFor="userName" className="form-label">username</label>
+        <div className="mb-3">
+          <label htmlFor="userName" className="form-label">Username</label>
           <input onChange={handleInputChange} value={user.userName} type="text" className="form-control" name="userName" id="userName" required placeholder="Add a username..." />
         </div>
 
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Email</label>
-          <input onChange={handleInputChange} value={user.email} type="email" className="form-control" name="email" id="email" required placeholder="Add a email..." />
+          <input onChange={handleInputChange} value={user.email} type="email" className="form-control" name="email" id="email" required placeholder="Add an email..." />
         </div>
 
         <div className="mb-3">
@@ -83,8 +85,8 @@ const Register = () => {
 
         <button type="submit" className="btn btn-primary">Register</button>
       </form>
-
     </div>
+  </div>
   );
 };
 

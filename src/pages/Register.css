@@ -1,0 +1,81 @@
+.register-container {
+    background-image: url('https://img.freepik.com/vector-gratis/showtime-movie-time-tira-pelicula-fondo-rojo_1017-33454.jpg?t=st=1720847458~exp=1720851058~hmac=d953769f0debb728f161f76fef1ac4dcc26945927c29d9c555acceddb80e4ec9&w=2000');
+    background-size: cover;
+    background-position: center;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .register-form-container {
+    position: relative; /* Necesario para el pseudo-elemento */
+    background-image: url("https://img.freepik.com/fotos-premium/fondo-abstracto-colorido-pelicula-estripada-fondo-magenta-pelicula-estripada-como-fondo_1028938-35476.jpg?w=740");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden; /* Asegura que el contenido no se desborde del contenedor */
+  }
+  
+  .register-form-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Fondo negro con opacidad para oscurecer la imagen */
+    border-radius: 30px;
+    z-index: 0; /* Asegura que el pseudo-elemento esté detrás del contenido del formulario */
+    pointer-events: none; /* Asegura que el pseudo-elemento no interfiera con la interacción del formulario */
+  }
+  
+  .register-form-container form {
+    position: relative; /* Necesario para que los elementos del formulario se ubiquen sobre el pseudo-elemento */
+    z-index: 1; /* Asegura que el contenido del formulario esté por encima del pseudo-elemento */
+  }
+  
+  .register-form-container h1 {
+    color: #ffffff; /* Títulos del formulario en blanco */
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  .form-control {
+    background: rgba(111, 107, 107, 0.9); /* Fondo blanco con opacidad para los campos de entrada */
+    color: #333; /* Color del texto en los campos de entrada */
+    border-radius: 5px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .btn-primary {
+    background-color: #ff4d4d !important; /* Color rojo */
+    border: none !important;
+    padding: 0.75rem 1.5rem;
+    color: rgb(136, 63, 63);
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: #e43f3f; /* Rojo oscuro al pasar el ratón */
+  }
+  
+  .form-label {
+    color: #ffffff; /* Cambia el color del texto a blanco */
+    z-index: 1; /* Asegura que la etiqueta esté por encima del fondo oscuro */
+    position: relative; /* Asegura que el color blanco del texto no se vea afectado por el fondo */
+  }
+  
+  .mb-3 {
+    margin-bottom: 1rem; /* Añade un margen inferior a los elementos del formulario */
+  }
+  
